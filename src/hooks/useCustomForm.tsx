@@ -9,6 +9,7 @@ export interface CustomInputProps extends IInputProps {
 export interface CustomFormProps {
   customForm: {
     inputs: CustomInputProps[]
+    inputGroup?: Record<string, Record<string,CustomInputProps[]>>
   }
 }
 
@@ -34,12 +35,20 @@ export function useCustomForm({ customForm, }: CustomFormProps){
   }
 
   function changeInputValue(input: IInputProps, value: string){
-    setInputValues({...inputValues, [String(input.testID)]: value,})
+    setInputValues({...inputValues, [input.name]: value,})
   }
 
   function initInputValues(){
-    const initialInputValues = customForm.inputs.reduce((acc, input) => ({...acc, [String(input.testID)]: input.value || '',}), {})
-    setInputValues(initialInputValues)
+    const initialInputValues = customForm.inputs.reduce((acc, input) => ({...acc, [input.name]: input.value || '',}), {})
+    const initialInputGroupValues = customForm?.inputGroup && Object.entries(customForm?.inputGroup)
+      .reduce((acc, item) => {
+        
+
+        return item
+      }, {})  
+
+    console.log({initialInputGroupValues,})
+    setInputValues({...initialInputValues, ...customForm?.inputGroup,})
   }
 
   useEffect(() => {

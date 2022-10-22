@@ -30,7 +30,7 @@ export function Form({ form, handleSubmit, changeInputValue, inputValues,}: Form
             </Pressable> 
             : <></>}/>
       ))}
-      <Button onPress={handleSubmit}>Adicionar input</Button>
+      <Button onPress={handleSubmit}>Entrar</Button>
 
     </>
   )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import uuid from 'react-native-uuid'
-import { Image, Center, Button } from 'native-base'
+import { Image, Center } from 'native-base'
 import LogoImage from '../../assets/Logo.png'
 import { CustomFormProps, useCustomForm } from '../../hooks/useCustomForm'
 import { Form } from '../../components/Form'
@@ -18,12 +18,25 @@ export function Login(){
       },
       { 
         ...InputBase,
-        name: 'pass',
+        name: 'password',
         testID: String(uuid.v4()),
         placeholder: 'Senha',
         type: 'password',
       },
-    ],    
+    ],
+    inputGroup: {
+      'locations': {
+        [String(uuid.v4())]: [
+          { 
+            ...InputBase,
+            name: 'local1',
+            testID: String(uuid.v4()),
+            placeholder: 'Nome do local',
+            type: 'text',
+          },
+        ],
+      },
+    },    
   })
 
   const { form, inputValues, changeInputValue, } = useCustomForm({customForm: formData,})
